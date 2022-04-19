@@ -21,9 +21,9 @@ const init = () => {
   abiJson = abiJson.filter(element => element.type === 'function')
   if (typeof window.ethereum === "undefined") {
     //没安装MetaMask钱包进行弹框提示
-    console.log(
-      "Looks like you need a Dapp browser to get started.\nConsider installing MetaMask!"
-    )
+    const error = "Looks like you need a Dapp browser to get started.\nConsider installing MetaMask!"
+    alert(error)
+    console.log(error)
   } else {
     //如果用户安装了MetaMask，你可以要求他们授权应用登录并获取其账号
     // eslint-disable-next-line no-undef
@@ -43,9 +43,8 @@ const init = () => {
       })
       .catch(function (reason) {
         data.funcs = []
-        console.log(
-          reason
-        )
+        alert(reason)
+        console.log(reason)
       });
   }
 }
@@ -54,10 +53,12 @@ const call = (item) => {
   console.log(item)
   call1(item)
   .then(response => {
+    alert("result: " + response)
     console.log("result: ", response)  
     console.log("\n\n")
   })
   .catch(error => {
+    alert("error: " + error)
     console.log("error: ", error)
     console.log("\n\n")
   })
